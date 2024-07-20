@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-contactapplication-dev-545a1-authRole",
+      "UnauthRoleArn": "arn:aws:iam::891376968101:role/amplify-contactapplication-dev-545a1-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::891376968101:role/amplify-contactapplication-dev-545a1-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-contactapplication-dev-545a1-deployment",
+      "UnauthRoleName": "amplify-contactapplication-dev-545a1-unauthRole",
+      "StackName": "amplify-contactapplication-dev-545a1",
+      "StackId": "arn:aws:cloudformation:ap-south-1:891376968101:stack/amplify-contactapplication-dev-545a1/7fa99cb0-4643-11ef-844b-06b4937d203a",
+      "AmplifyAppId": "dnsv9usm5u07"
+    },
+    "categories": {
+      "api": {
+        "contactapplication": {}
+      },
+      "auth": {
+        "contactapplication88f21366": {}
+      }
+    }
+  }
+}
