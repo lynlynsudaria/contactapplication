@@ -1,18 +1,30 @@
 import React from 'react';
-import ContactItem from './ContactItem';
 
 const ContactList = ({ contacts, deleteContact }) => {
   return (
-    <ul>
+    <div>
       {contacts.map((contact, index) => (
-        <ContactItem
-          key={index}
-          contact={contact}
-          index={index}
-          deleteContact={deleteContact}
-        />
+        <div key={index} style={{ border: '1px solid #ddd', padding: '10px', marginBottom: '10px' }}>
+          {contact.profilePicture && (
+            <img 
+              src={contact.profilePicture} 
+              alt="Profile" 
+              style={{ width: '100px', height: '100px', marginRight: '10px' }} 
+            />
+          )}
+          <div>
+            <strong>Name:</strong> {contact.name}
+          </div>
+          <div>
+            <strong>Email:</strong> {contact.email}
+          </div>
+          <div>
+            <strong>Contact Number:</strong> {contact.contactNumber}
+          </div>
+          <button onClick={() => deleteContact(index)}>Delete</button>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 };
 

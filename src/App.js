@@ -3,6 +3,8 @@ import amplifyconfig from './amplifyconfiguration.json';
 
 import React, { useState } from 'react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Home from './Home';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import NavBar from './NavBar';
@@ -23,24 +25,21 @@ const App = ({ signOut, user }) => {
     setContacts(newContacts);
   };
 
-  const styles = {
-    container: {
-      padding: '20px',
-      maxWidth: '600px',
-      margin: '0 auto',
-      textAlign: 'center'
-    }
-  };
-
   return (
-    <div>
+    <Router>
       <NavBar signOut={signOut} user={user} />
-      <div style={styles.container}>
-        <h1>Contact App</h1>
-        <ContactForm addContact={addContact} />
-        <ContactList contacts={contacts} deleteContact={deleteContact} />
-      </div>
-    </div>
+      <Routes>
+        <Route path="/home" element={<Home user={user} />} />
+        <Route path="/contacts" element={
+          <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
+            <h1>Contact App</h1>
+            <ContactForm addContact={addContact} />
+            <ContactList contacts={contacts} deleteContact={deleteContact} />
+          </div>
+        } />
+        <Route path="/" element={<Navigate to="/home" />} />
+      </Routes>
+    </Router>
   );
 };
 

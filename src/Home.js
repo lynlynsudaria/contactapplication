@@ -1,47 +1,49 @@
-import { Amplify } from 'aws-amplify';
-import amplifyconfig from './amplifyconfiguration.json';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import React, { useState } from 'react';
-import { withAuthenticator } from '@aws-amplify/ui-react';
-import ContactForm from './ContactForm';
-import ContactList from './ContactList';
-import NavBar from './NavBar';
-import '@aws-amplify/ui-react/styles.css';
-import './App.css';
+const Home = ({ user }) => {
+  const navigate = useNavigate();
 
-Amplify.configure(amplifyconfig);
-
-const App = ({ signOut, user }) => {
-  const [contacts, setContacts] = useState([]);
-
-  const addContact = (contact) => {
-    setContacts([...contacts, contact]);
-  };
-
-  const deleteContact = (index) => {
-    const newContacts = contacts.filter((_, i) => i !== index);
-    setContacts(newContacts);
+  const handleViewContacts = () => {
+    navigate('/contacts');
   };
 
   const styles = {
     container: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       padding: '20px',
-      maxWidth: '600px',
+      maxWidth: '800px',
       margin: '0 auto',
-      textAlign: 'center'
+      textAlign: 'left'
+    },
+    logo: {
+      width: '100px',
+      height: '100px',
+      marginRight: '20px'
+    },
+    content: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start'
+    },
+    paragraph: {
+      fontSize: '1.2em',
+      marginBottom: '20px'
     }
   };
 
   return (
-    <div>
-      <NavBar signOut={signOut} user={user} />
-      <div style={styles.container}>
-        <h1>Contact App</h1>
-        <ContactForm addContact={addContact} />
-        <ContactList contacts={contacts} deleteContact={deleteContact} />
+    <div style={styles.container}>
+      <img src="/logo.png" alt="Logo" style={styles.logo} />
+      <div style={styles.content}>
+        <h1>Welcome, {user.username}!</h1>
+        <p style={styles.paragraph}>This is a place where you can manage your contacts efficiently and easily.</p>
+        <button onClick={handleViewContacts}>View Contacts</button>
       </div>
     </div>
   );
 };
 
-export default withAuthenticator(App);
+export default Home;
